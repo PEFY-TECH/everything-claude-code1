@@ -1,0 +1,22 @@
+{
+  "name": "pefy-omnia-agent-os",
+  "description": "PEFY-GG governed system-of-systems agent runtime for secure orchestration, evidence-based assurance, and cross-functional execution",
+  "author": {
+    "name": "PEFY-TECH / Dr Erick Franck PATHINVO",
+    "url": "https://github.com/PEFY-TECH"
+  },
+  "homepage": "https://github.com/PEFY-TECH/everything-claude-code1/tree/main/pefy-omnia",
+  "repository": "https://github.com/PEFY-TECH/everything-claude-code1",
+  "license": "MIT",
+  "keywords": [
+    "agentic-os",
+    "system-of-systems",
+    "orchestration",
+    "assurance",
+    "security",
+    "governance",
+    "devsecops",
+    "audit",
+    "pefy-gg"
+  ]
+}

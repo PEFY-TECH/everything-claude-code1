@@ -1,0 +1,39 @@
+name: Validate PEFY OMNIA Agent OS
+
+on:
+  pull_request:
+    paths:
+      - "pefy-omnia/**"
+      - ".claude-plugin/marketplace.json"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+      - ".github/workflows/pefy-omnia-validate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "pefy-omnia/**"
+      - ".claude-plugin/marketplace.json"
+      - "AGENTS.md"
+      - "CLAUDE.md"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate plugin structure and security gate
+        run: node pefy-omnia/scripts/validate.mjs
+
+      - name: Validate marketplace JSON
+        run: node -e "JSON.parse(require('node:fs').readFileSync('.claude-plugin/marketplace.json','utf8')); console.log('Marketplace JSON valid')"
