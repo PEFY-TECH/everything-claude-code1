@@ -1,0 +1,22 @@
+name: PEFY Sovereign Runtime Quality
+on:
+  pull_request:
+    paths: ["pefy-sovereign-runtime/**"]
+  push:
+    branches: [main]
+    paths: ["pefy-sovereign-runtime/**"]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pefy-sovereign-runtime
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --extra dev
+      - run: uv run ruff check .
+      - run: uv run pytest --cov=app --cov-report=term-missing --cov-fail-under=80
+      - run: uv run python -m compileall app api mcp_server
